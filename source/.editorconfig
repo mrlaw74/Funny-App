@@ -1,0 +1,5 @@
+root = true
+
+[*]
+# Các thuộc tính cho mọi file
+indent_size = 4

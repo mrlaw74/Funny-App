@@ -1,0 +1,74 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+
+# PyInstaller
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Environments
+.env
+.env.*
+!env.example
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# MySQL database dumps (if applicable)
+*.sql
+*.db
+
+# Logs and temp files
+*.log
+*.temp
+*.tmp
+*.swp
+*.swo
+*.DS_Store
+
+# OS generated files
+Thumbs.db
+.DS_Store
+
+# IDE files
+.vscode/
+.idea/
+
+# Python debugging logs
+debug.log
+
+# Docker-related files (if using Docker)
+docker-compose.yml
+Dockerfile
+
+**/config.py
+**/decode.py
+**/store.py
+**/autogen.py
+**/db_manager.py
+**/encoded_files.txt
+**/stored_files.txt
+
