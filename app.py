@@ -1,17 +1,14 @@
+"""
+Main application entry point for the Tkinter-based GUI.
+
+This module handles initializing and displaying the main application window.
+"""
+
 import tkinter as tk
-from gui.login.gui import loginWindow
-from gui.mainwindow.main import mainWindow
-from gui.register.gui import registerWindow
+from gui.login.gui import login_window
 
-
-root = tk.Tk()  # Make temporary window for app to start
-root.withdraw()  # WithDraw the window
-
+root = tk.Tk()
+root.withdraw()
 
 if __name__ == "__main__":
-
-    # loginWindow()
-    mainWindow()
-    # registerWindow()
-
-#  root.mainloop()
+    login_window()

@@ -1,49 +1,34 @@
+"""
+Login window module for the GUI application.
+
+This module defines the login functionality and integrates it with the database.
+"""
+
 from pathlib import Path
-
-from tkinter import Toplevel, Tk, Canvas, Entry, Text, Button, PhotoImage, messagebox
-
-# from controller import *
+from tkinter import Toplevel, Canvas, Entry, Button, PhotoImage, messagebox
 from services.Data_Base.db_service import *
 from ..mainwindow.main import mainWindow
 
 OUTPUT_PATH = Path(__file__).parent
-print(OUTPUT_PATH)
 ASSETS_PATH = OUTPUT_PATH / Path("./assets")
 
+user = None  # Define global variable
 
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
 
-def loginWindow():
+def login_window():
+    """
+    Opens the login window for user authentication.
+    """
     Login()
 
 
 class Login(Toplevel):
-
-    global user
-    # Login check function
-    def loginFunc(self):
-        global user
-        if check_user(self.username.get().lower(), self.password.get()):
-            user = self.username.get().lower()
-            self.destroy()
-            mainWindow()
-            return
-        else:
-            messagebox.showerror(
-                title="Invalid Credentials",
-                message="The username and self.password don't match",
-            )
-    # Todo: Register
-    def registerFunc(self):
-        # messagebox.showerror(
-        #         title="Warning",
-        #         message="This features is being developed",
-        # )
-        from ..register.gui import registerWindow
-        self.destroy()
-        registerWindow()
+    """
+    Represents the login window in the GUI application.
+    """
     def __init__(self, *args, **kwargs):
 
         Toplevel.__init__(self, *args, **kwargs)
@@ -107,7 +92,7 @@ class Login(Toplevel):
             image=button_image_1,
             borderwidth=0,
             highlightthickness=0,
-            command=self.loginFunc,
+            command=self.login_func,
             relief="flat",
         )
         button_1.place(x=740.0, y=412.0, width=190.0, height=48.0)
@@ -118,7 +103,7 @@ class Login(Toplevel):
             image=button_image_2,
             borderwidth=0,
             highlightthickness=0,
-            command=self.registerFunc,
+            command=self.register_func,
             relief="flat",
         )
         button_2.place(x=540.0, y=412.0, width=190.0, height=48.0)
@@ -190,3 +175,26 @@ class Login(Toplevel):
 
         self.resizable(False, False)
         self.mainloop()
+
+    def login_func(self):
+        """
+        Authenticates the user and opens the main window if successful.
+        """
+        global user
+        if check_user(self.username.get().lower(), self.password.get()):
+            user = self.username.get().lower()
+            self.destroy()
+            mainWindow()
+            return
+        messagebox.showerror(
+            title="Invalid Credentials",
+            message="The username and password don't match",
+        )
+
+    def register_func(self):
+        """
+        Opens the register window for new user registration.
+        """
+        from ..register.gui import registerWindow
+        self.destroy()
+        registerWindow()
