@@ -1,18 +1,20 @@
-import sys
+"""
+TODO
+"""
 import os
-# Add the root directory to sys.path
-root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))
-sys.path.append(root_dir)
-
+import sys
 import socket
 import threading
 import mysql.connector  # Import MySQL connector
-from utils.getIp import get_ipv4_address
-# from .config import config
-from services.TCP_Server.config import config
 from dotenv import load_dotenv
+from services.TCP_Server.config import config
 
-load_dotenv() 
+root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))
+sys.path.append(root_dir)
+
+from utils.getIp import get_ipv4_address
+
+load_dotenv()
 
 # MySQL Database Configuration
 connection = mysql.connector.connect(
@@ -26,7 +28,7 @@ connection = mysql.connector.connect(
 
 cursor = connection.cursor(buffered=True)
 
-HOST = get_ipv4_address() 
+HOST = get_ipv4_address()
 
 PORT = 3333
 

@@ -1,7 +1,7 @@
-import mysql.connector
 import os
-from .config import config
+import mysql.connector
 from dotenv import load_dotenv
+from .config import config
 
 load_dotenv()  # Load environment variables from the .env file
 

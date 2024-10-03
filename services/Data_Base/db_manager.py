@@ -26,7 +26,8 @@ def check_user(username, password=None):
     """
     TODO
     """
-    cmd = f"SELECT COUNT(username) FROM login WHERE username='{username}' AND BINARY password='{password}'"
+    cmd = f"SELECT COUNT(username) FROM login WHERE username='{username}' \
+        AND BINARY password='{password}'"
     cursor.execute(cmd)
     result = cursor.fetchone()[0] >= 1
     return result
@@ -41,7 +42,8 @@ def register_user(username, password, sec_que=None, sec_ans=None):
         return False
     
     try:
-        cmd = "INSERT INTO login (username, password, sec_que, sec_ans) VALUES (%s, %s, %s, %s)"
+        cmd = "INSERT INTO login (username, password, sec_que, sec_ans) VALUES \
+            (%s, %s, %s, %s)"
         cursor.execute(cmd, (username, password, sec_que, sec_ans))
         connection.commit()
         messagebox.showinfo("Success", "User registered successfully.")
@@ -57,7 +59,7 @@ def delete_user(username):
     """
     if username:
         try:
-            cmd = "DELETE FROM login WHERE username = %s"  # Prepared statement for safety
+            cmd = "DELETE FROM login WHERE username = %s"
             cursor.execute(cmd, (username,))
             connection.commit()
             if cursor.rowcount > 0:
@@ -96,7 +98,8 @@ class UserManagementApp:
         self.add_button.pack()
 
         # Delete user button
-        self.delete_button = tk.Button(master, text="Delete User", command=self.delete_user)
+        self.delete_button = tk.Button(master, text="Delete User",
+        command=self.delete_user)
         self.delete_button.pack()
 
     def add_user(self):
@@ -108,7 +111,8 @@ class UserManagementApp:
         if username and password:
             register_user(username, password)  # Using the existing function
         else:
-            messagebox.showwarning("Input Error", "Please enter both username and password.")
+            messagebox.showwarning("Input Error",\
+                "Please enter both username and password.")
 
     def delete_user(self):
         """
@@ -133,5 +137,5 @@ def on_closing():
 if __name__ == "__main__":
     root = tk.Tk()
     app = UserManagementApp(root)
-    root.protocol("WM_DELETE_WINDOW", on_closing)  # Ensure connection closes on exit
+    root.protocol("WM_DELETE_WINDOW", on_closing)
     root.mainloop()
