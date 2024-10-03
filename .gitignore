@@ -145,3 +145,4 @@ autogen.py
 decode.py
 encoded_files.txt
 stored_files.txt
+store.py

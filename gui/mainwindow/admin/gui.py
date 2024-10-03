@@ -1,3 +1,6 @@
+"""
+TODO
+"""
 from pathlib import Path
 import tkinter as tk
 from tkinter import Frame, Entry, Label, Button, scrolledtext, Canvas, PhotoImage
@@ -18,6 +21,9 @@ def admin():
     Admin()
 
 class Admin(Frame):
+    """
+    TODO
+    """
     def __init__(self, parent, controller=None, *args, **kwargs):
         Frame.__init__(self, parent, *args, **kwargs)
         self.parent = parent
