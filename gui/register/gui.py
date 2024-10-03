@@ -12,16 +12,28 @@ ASSETS_PATH = OUTPUT_PATH / Path("./assets")
 
 
 def relative_to_assets(path: str) -> Path:
+    """
+    TODO
+    """
     return ASSETS_PATH / Path(path)
 
 
 def registerWindow():
+    """
+    TODO
+    """
     Register()
 
 
 class Register(Toplevel):
+    """
+    TODO
+    """
     # Login check function
     def back2Login(self):
+        """
+        TODO
+        """
         if check_username(self.username.get()) and check_pw(self.password.get()):
             if (register_user(self.username.get(),self.password.get())):
                 from ..login.gui import loginWindow

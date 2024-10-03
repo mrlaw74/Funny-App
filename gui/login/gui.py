@@ -6,15 +6,17 @@ This module defines the login functionality and integrates it with the database.
 
 from pathlib import Path
 from tkinter import Toplevel, Canvas, Entry, Button, PhotoImage, messagebox
-from services.Data_Base.db_service import *
+from services.Data_Base.db_service import check_user
 from ..mainwindow.main import mainWindow
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("./assets")
 
-user = None  # Define global variable
 
 def relative_to_assets(path: str) -> Path:
+    """
+    TODO
+    """
     return ASSETS_PATH / Path(path)
 
 
@@ -180,9 +182,7 @@ class Login(Toplevel):
         """
         Authenticates the user and opens the main window if successful.
         """
-        global user
         if check_user(self.username.get().lower(), self.password.get()):
-            user = self.username.get().lower()
             self.destroy()
             mainWindow()
             return

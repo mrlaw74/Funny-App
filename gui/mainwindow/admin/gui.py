@@ -2,14 +2,19 @@ from pathlib import Path
 import tkinter as tk
 from tkinter import Frame, Entry, Label, Button, scrolledtext, Canvas, PhotoImage
 
-# Set up paths for assets if needed
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("./assets")
 
 def relative_to_assets(path: str) -> Path:
+    """
+    TODO
+    """
     return ASSETS_PATH / Path(path)
 
 def admin():
+    """
+    TODO
+    """
     Admin()
 
 class Admin(Frame):

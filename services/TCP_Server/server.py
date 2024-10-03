@@ -39,6 +39,9 @@ nicknames = []
 
 # Function to broadcast messages to all clients
 def broadcast(message):
+    """
+    TODO
+    """
     for client in clients:
         try:
             client.send(message)
@@ -48,6 +51,9 @@ def broadcast(message):
 
 # Function to insert a message into the database
 def insert_message(nickname, message):
+    """
+    TODO
+    """
     try:
         sql = "INSERT INTO messages (nickname, message) VALUES (%s, %s)"
         values = (nickname, message)
@@ -59,6 +65,9 @@ def insert_message(nickname, message):
 
 # Function to remove a client from the list
 def remove_client(client):
+    """
+    TODO
+    """
     if client in clients:
         index = clients.index(client)
         nickname = nicknames[index]
@@ -71,6 +80,9 @@ def remove_client(client):
 
 # Function to handle communication with a single client
 def handle_client(client):
+    """
+    TODO
+    """
     while True:
         try:
             message = client.recv(1024)
@@ -92,6 +104,9 @@ def handle_client(client):
 
 # Function to accept and manage new connections
 def receive():
+    """
+    TODO
+    """
     while True:
         client, address = server.accept()
         print(f"Connected with {str(address)}")

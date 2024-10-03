@@ -5,27 +5,34 @@ import tkinter as tk
 from tkinter import Frame, Entry, Label, Button, scrolledtext, Canvas, PhotoImage
 import queue
 
-# Set up paths for assets if needed
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("./assets")
 
 def get_ipv4_address():
+    """
+    TODO
+    """
     hostname = socket.gethostname()  # Get the hostname of the machine
     ipv4_address = socket.gethostbyname(hostname)  # Get the IPv4 address using the hostname
     return ipv4_address
 
 
 def relative_to_assets(path: str) -> Path:
+    """
+    TODO
+    """
     return ASSETS_PATH / Path(path)
 
 
 class ChattingRoom(Frame):
+    """
+    TODO
+    """
     def __init__(self, parent, controller=None, *args, **kwargs):
         Frame.__init__(self, parent, *args, **kwargs)
         self.parent = parent
         self.configure(bg="#6ecaf5")
 
-        # Initialize the client socket
         self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
         # Create a queue for messages
@@ -54,13 +61,17 @@ class ChattingRoom(Frame):
             font=("Montserrat Bold", 12),  # Adjust font size as needed
         )
 
-        self.nickname_entry = Entry(self.nickname_canvas, bd=0, bg="#EFEFEF", highlightthickness=0, font=("Montserrat Bold", 20 * -1))
+        self.nickname_entry = Entry(self.nickname_canvas, bd=0, bg="#EFEFEF", \
+        highlightthickness=0, font=("Montserrat Bold", 20 * -1))
         self.nickname_entry.place(x=73, y=50, width=336.0, height=30)  # Adjust x and y positions as needed
         self.nickname_entry.bind("<Return>", self.start_client)
 
         self.after(100, self.update_chat_box)
 
     def update_chat_box(self):
+        """
+        TODO
+        """
         while not self.message_queue.empty():
             message, align = self.message_queue.get()
             self.chat_box.config(state='normal')
@@ -70,6 +81,9 @@ class ChattingRoom(Frame):
         self.after(100, self.update_chat_box)  # Schedule next update
 
     def receive(self):
+        """
+        TODO
+        """
         while not self.stop_thread.is_set():
             try:
                 message = self.client.recv(1024).decode("utf-8")
@@ -91,19 +105,29 @@ class ChattingRoom(Frame):
         self.client.close()
 
     def send_message(self, event=None):
+        """
+        TODO
+        """
         message = f"{self.nickname}: {self.msg_entry.get()}"
         try:
             self.client.send(message.encode("utf-8"))
             self.msg_entry.delete(0, 'end')
         except Exception:
-            self.message_queue.put(("Message could not be sent. Server may be down.", "center"))
+            self.message_queue.put(("Message could not be sent.\
+            Server may be down.", "center"))
 
     def exit_chat(self):
+        """
+        TODO
+        """
         self.stop_thread.set()  # Signal the thread to stop
         self.client.close()  # Close the client socket
         self.after(0, self.quit)  # Ensure Tkinter quits on the main thread
 
     def start_client(self, event=None):
+        """
+        TODO
+        """
         self.nickname = self.nickname_entry.get()
 
         if self.nickname:
@@ -112,7 +136,8 @@ class ChattingRoom(Frame):
             self.chat_frame.place(x=10, y=10)
 
             # Chat display area (read-only)
-            self.chat_box = scrolledtext.ScrolledText(self.chat_frame, state='disabled', wrap='word', width=80, height=15)
+            self.chat_box = scrolledtext.ScrolledText(self.chat_frame, \
+                state='disabled', wrap='word', width=80, height=15)
             self.chat_box.pack(padx=20, pady=5, fill='both', expand=True)
 
             # Message input frame (hidden initially)
@@ -123,7 +148,8 @@ class ChattingRoom(Frame):
             self.msg_entry.pack(side='left', padx=10, pady=5, fill='x', expand=True)
             self.msg_entry.bind("<Return>", self.send_message)
 
-            self.send_button = Button(self.input_frame, text="Send", command=self.send_message)
+            self.send_button = Button(self.input_frame, text="Send",\
+                command=self.send_message)
             self.send_button.pack(side='right', padx=10, pady=5)
 
             # Exit chat button (hidden initially)
@@ -151,11 +177,10 @@ class ChattingRoom(Frame):
 
 
 def chat():
+    """
+    TODO
+    """
     window = tk.Tk()
     window.geometry("400x550")
     ChattingRoom(window)
     window.mainloop()
-
-
-# if __name__ == "__main__":
-#     chat()

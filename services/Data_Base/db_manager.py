@@ -23,6 +23,9 @@ cursor.execute("USE mydb")  # Set the database context explicitly
 
 # Function to check if the user exists
 def check_user(username, password=None):
+    """
+    TODO
+    """
     cmd = f"SELECT COUNT(username) FROM login WHERE username='{username}' AND BINARY password='{password}'"
     cursor.execute(cmd)
     result = cursor.fetchone()[0] >= 1
@@ -30,6 +33,9 @@ def check_user(username, password=None):
 
 # Function to add/register a new user
 def register_user(username, password, sec_que=None, sec_ans=None):
+    """
+    TODO
+    """
     if check_user(username):
         messagebox.showerror("Error", "Username already exists.")
         return False
@@ -46,6 +52,9 @@ def register_user(username, password, sec_que=None, sec_ans=None):
 
 # Function to delete a user
 def delete_user(username):
+    """
+    TODO
+    """
     if username:
         try:
             cmd = "DELETE FROM login WHERE username = %s"  # Prepared statement for safety
@@ -60,6 +69,9 @@ def delete_user(username):
 
 # UI Application
 class UserManagementApp:
+    """
+    TODO
+    """
     def __init__(self, master):
         self.master = master
         master.title("User Management")
@@ -88,6 +100,9 @@ class UserManagementApp:
         self.delete_button.pack()
 
     def add_user(self):
+        """
+        TODO
+        """
         username = self.username_entry.get()
         password = self.password_entry.get()
         if username and password:
@@ -96,6 +111,9 @@ class UserManagementApp:
             messagebox.showwarning("Input Error", "Please enter both username and password.")
 
     def delete_user(self):
+        """
+        TODO
+        """
         username = self.username_entry.get()
         if username:
             delete_user(username)  # Using the existing function
@@ -104,6 +122,9 @@ class UserManagementApp:
 
 # Close connection when the app is closed
 def on_closing():
+    """
+    TODO
+    """
     cursor.close()
     connection.close()
     root.destroy()

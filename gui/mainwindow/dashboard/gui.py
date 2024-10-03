@@ -7,14 +7,23 @@ ASSETS_PATH = OUTPUT_PATH / Path("./assets")
 
 
 def relative_to_assets(path: str) -> Path:
+    """
+    TODO
+    """
     return ASSETS_PATH / Path(path)
 
 
 def dashboard():
+    """
+    TODO
+    """
     Dashboard()
 
 
 class Dashboard(Frame):
+    """
+    TODO
+    """
     def __init__(self, parent, controller=None, *args, **kwargs):
         Frame.__init__(self, parent, *args, **kwargs)
         self.parent = parent

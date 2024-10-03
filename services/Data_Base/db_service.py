@@ -19,6 +19,9 @@ cursor = connection.cursor(buffered=True)
 
 # Function to check if the user exists
 def check_user(username, password=None):
+    """
+    TODO
+    """
     cmd = f"SELECT COUNT(username) FROM login WHERE username='{username}' AND BINARY password='{password}'"
     cursor.execute(cmd)
     result = cursor.fetchone()[0] >= 1
@@ -26,6 +29,9 @@ def check_user(username, password=None):
 
 # Function to add/register a new user
 def register_user(username, password, sec_que=None, sec_ans=None):
+    """
+    TODO
+    """
     """
     Register a new user by adding their information to the database.
     :param username: The username to add.
@@ -53,6 +59,9 @@ def register_user(username, password, sec_que=None, sec_ans=None):
 # Function to get total users count
 def get_total_users():
     """
+    TODO
+    """
+    """
     Retrieve the total number of users in the 'login' table.
     :return: The total number of users, or False if there are no users.
     """
@@ -64,5 +73,8 @@ def get_total_users():
 
 # Close the cursor and connection when done
 def close_connection():
+    """
+    TODO
+    """
     cursor.close()
     connection.close()

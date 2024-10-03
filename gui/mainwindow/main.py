@@ -19,14 +19,23 @@ ASSETS_PATH = OUTPUT_PATH / Path("./assets")
 
 
 def relative_to_assets(path: str) -> Path:
+    """
+    TODO
+    """
     return ASSETS_PATH / Path(path)
 
 
 def mainWindow():
+    """
+    TODO
+    """
     MainWindow()
 
 
 class MainWindow(Toplevel):
+    """
+    TODO
+    """
     global user
 
     def __init__(self, *args, **kwargs):
@@ -141,9 +150,15 @@ class MainWindow(Toplevel):
         self.mainloop()
 
     def place_sidebar_indicator(self):
+        """
+        TODO
+        """
         pass
 
     def handle_btn_press(self, caller, name):
+        """
+        TODO
+        """
         # Place the sidebar on respective button
         self.sidebar_indicator.place(x=0, y=caller.winfo_y())
 
@@ -162,10 +177,16 @@ class MainWindow(Toplevel):
         self.canvas.itemconfigure(self.heading, text=current_name)
 
     def handle_dashboard_refresh(self):
+        """
+        TODO
+        """
         # Recreate the dash window
         self.windows["dash"] = Dashboard(self)
 
     def logout(self):
+        """
+        TODO
+        """
         confirm = messagebox.askyesno("Confirm log-out", "Do you really want to log out?")
         if confirm == True:
             user = None
